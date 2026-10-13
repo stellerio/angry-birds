@@ -1,0 +1,13 @@
+[package]
+name = "angry-birds-rust"
+version = "0.1.0"
+edition = "2021"
+description = "An original Rust slingshot physics game prototype"
+license = "MIT"
+
+[dependencies]
+bytemuck = { version = "1.21", features = ["derive"] }
+glam = "0.29"
+pollster = "0.4"
+wgpu = "24"
+winit = "0.30"
