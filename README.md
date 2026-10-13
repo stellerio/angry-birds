@@ -1,41 +1,54 @@
-# Angry Birds Rust
+# Angry / Rust
 
-An original native Rust slingshot-game prototype. This project uses its own placeholder shapes and gameplay code; it does not include Angry Birds' proprietary source code or assets.
+An original slingshot-game project with a **Rust + WebAssembly website** that can be hosted on GitHub Pages. The project also keeps an experimental native desktop prototype at the repository root.
 
-## Current prototype
+## Website
 
-- Native desktop window powered by `winit`
-- GPU rendering with `wgpu`
-- Drag the bird back from the slingshot, then release to launch
-- Simple projectile gravity and collision checks
-- Pigs and wooden blocks, with a score counter
-- Press **R** to reset the level
+The website lives in `web/` and is written in Rust with Yew. Trunk compiles it to WebAssembly, and GitHub Actions builds and deploys it to GitHub Pages whenever code is pushed to `main`.
 
-## Run
+Once GitHub Pages is enabled for this repository, the website URL will be:
 
-Install a recent stable Rust toolchain from https://rustup.rs, then run:
+**https://stellerio.github.io/angry-birds/**
+
+### Enable GitHub Pages once
+
+1. Open the repository's **Settings → Pages**.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Open the **Actions** tab and watch the **Build and deploy Rust website** workflow.
+4. When the deployment finishes successfully, visit the website URL above.
+
+### Run the website locally
+
+Install stable Rust from https://rustup.rs and install Trunk:
+
+```sh
+cargo install trunk
+rustup target add wasm32-unknown-unknown
+cd web
+trunk serve
+```
+
+Trunk will print a local development URL. Open it in your browser; changes to the Rust and CSS files will rebuild automatically.
+
+### How it works
+
+- **Rust + Yew** — interactive page logic and UI.
+- **WebAssembly** — runs the compiled Rust in the browser.
+- **HTML + CSS** — page entry point and styling.
+- **GitHub Actions + GitHub Pages** — build and host the static site automatically.
+
+The interactive playground currently demonstrates the site state and launch counter. It is a website demo, not yet a complete physics game.
+
+## Native prototype
+
+The original desktop prototype remains at the repository root. To try it, run:
 
 ```sh
 cargo run --release
 ```
 
-The first build downloads Rust dependencies. A graphics backend supported by wgpu is required.
-
-## Controls
-
-- **Left mouse button:** click and drag the bird backward
-- **Release mouse:** launch
-- **R:** reset the level
-- **Esc:** quit
-
-## Roadmap
-
-- Better collision response and destructible structures
-- Multiple bird types and levels
-- Mesh/texture asset pipeline
-- Sound and particles
-- Save/load level data
+It requires a desktop environment and a graphics backend supported by wgpu.
 
 ## License
 
-MIT. See the repository license file when added. Third-party crate licenses remain with their respective authors.
+MIT. The project uses original code and placeholder artwork and does not include Angry Birds' proprietary source code or assets.
